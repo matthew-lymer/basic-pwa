@@ -1,0 +1,27 @@
+html,
+body{
+    padding: 0;
+    border: 0;
+}
+
+body{
+    background: #4cb0b9;
+    font-family: helvetica, arial, sans-serif;
+}
+
+main{
+    display: block;
+    padding: 20px;
+}
+
+.intro{
+    background: #fff;
+    color: #222;
+    width: 100%;
+    font-size: 30px;
+    line-height: 30px;
+    height: auto;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+}
