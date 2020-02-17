@@ -19,7 +19,7 @@ const app = {
 
             // Checks if should display install popup notification:
             if (isIos() && !isInStandaloneMode()) {
-                this.setState({ alert("To install this Web app, click the [^] icon and select 'Add to homescreen' then 'Add'.") });
+                alert("To install this Web app, click the [^] icon and select 'Add to homescreen' then 'Add'.");
             }
         },
     };
