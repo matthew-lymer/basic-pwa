@@ -1,5 +1,5 @@
 const cacheName = 'PWA-sample-v1';
-const dynamicCacheName = 'site-dynamic-v1.04';
+const dynamicCacheName = 'site-dynamic-v1.05';
 const filesToCache = [
   'index.html',
   'css/style.css',
