@@ -1,9 +1,10 @@
 const cacheName = 'PWA-sample-v1';
-const dynamicCacheName = 'site-dynamic-v1.01';
+const dynamicCacheName = 'site-dynamic-v1.03';
 const filesToCache = [
   'index.html',
   'css/style.css',
-  'js/scripts.js'
+  'js/scripts.js',
+  'images/smiley.png'
 ];
 
 // cache size limit function
