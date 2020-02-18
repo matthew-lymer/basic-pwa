@@ -1,27 +1,48 @@
-const app = {
-        init() {
-            "serviceWorker" in navigator && window.addEventListener("load", function() {
-                navigator.serviceWorker.register("sw.js").then(function(e) {
-                    //
-                }, function(e) {
-                    //
-                })
-            }), this.checkIOS()
-        },
-        checkIOS() {
-            const isIos = () => {
-                const userAgent = window.navigator.userAgent.toLowerCase();
-                return /iphone|ipad|ipod/.test( userAgent );
-            }
+let newServiceWorker;
+let updateBar = document.getElementById('update');
 
-            // Detects if device is in standalone mode
-            const isInStandaloneMode = () => ('standalone' in window.navigator) && (window.navigator.standalone);
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js').then(reg => {
+        reg.addEventListener('updatefound', () => {
+            //New update update found
+            newServiceWorker = reg.installing;
+            newServiceWorker.addEventListener('statechange', () => {
+                // Has network.state changed?
+                switch (newServiceWorker.state) {
+                    case 'installed':
+                    if (navigator.serviceWorker.controller) {
+                        // new update available, show Update Bar
+                        updateBar.className = 'on';
+                    }
+                    // No update available
+                    break;
+                }
+            });
+        });
+    });
 
-            // Checks if should display install popup notification:
-            if (isIos() && !isInStandaloneMode()) {
-                alert("To install this Web app, click the [^] icon and select 'Add to homescreen' then 'Add'.");
-            }
-        },
-    };
+    let refreshing;
 
-app.init();
+    navigator.serviceWorker.addEventListener('controllerchange', function () {
+        if (refreshing) return;
+        window.location.reload();
+        refreshing = true;
+    });
+}
+
+// Click ebvent for Update Bar
+updateBar.addEventListener('click', function(){
+    newServiceWorker.postMessage({ action: 'skipWaiting' });
+});
+
+// Prompt installation on IOS
+const isIos = () => {
+    const userAgent = window.navigator.userAgent.toLowerCase();
+    return /iphone|ipad|ipod/.test( userAgent );
+}
+
+const isInStandaloneMode = () => ('standalone' in window.navigator) && (window.navigator.standalone);
+
+if(isIos() && !isInStandaloneMode()){
+    alert("To install this Web app, click the [^] icon and select 'Add to homescreen' then 'Add'.");
+}

@@ -1,4 +1,4 @@
-var cacheName = 'PWA-sample-v12345678'; //V8
+var cacheName = 'version-1.01';
 var filesToCache = [
   'index.html',
   'css/style.css',
@@ -27,6 +27,12 @@ self.addEventListener('activate', event => {
             console.log(cacheName +' update applied and cached!');
         })
     );
+});
+
+self.addEventListener('message', function (event) {
+    if (event.data.action === 'skipWaiting') {
+        self.skipWaiting();
+    }
 });
 
 //Network first

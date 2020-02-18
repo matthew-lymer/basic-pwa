@@ -7,6 +7,8 @@ body{
 body{
     background: #4cb0b9;
     font-family: Palatino, helvetica, arial, sans-serif;
+    font-size: 15px;
+    line-height: 20px;
 }
 
 main{
@@ -29,4 +31,20 @@ main{
 
 img{
     vertical-align: bottom;
+}
+
+#update{
+    display: none;
+    position: fixed;
+    bottom:0;
+    width: 100%;
+    background: #222;
+    color: #fff;
+    text-align: center;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+#update.on{
+    display: block;
 }
