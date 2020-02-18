@@ -3,7 +3,7 @@ let updateBar = document.getElementById('update');
 
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('sw.js').then(reg => {
-        setInterval(function(){
+        function checkForUpdate(){
             reg.addEventListener('updatefound', () => {
                 //New update update found
                 newServiceWorker = reg.installing;
@@ -20,7 +20,13 @@ if ('serviceWorker' in navigator) {
                     }
                 });
             });
-        },(1000*60*5)); // Check every 5 mins
+        }
+
+        checkForUpdate();
+
+        setInterval(function(){
+            checkForUpdate();
+        },(1000*60)); // Check every 5 mins
     });
 
     let refreshing;
