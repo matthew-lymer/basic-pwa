@@ -1,4 +1,4 @@
-var cacheName = 'PWA-sample-v1234567'; //V7
+var cacheName = 'PWA-sample-v12345678'; //V8
 var filesToCache = [
   'index.html',
   'css/style.css',
