@@ -38,6 +38,7 @@ img{
     position: fixed;
     bottom:0;
     width: 100%;
+    left: 0;
     background: #222;
     color: #fff;
     text-align: center;
