@@ -14,16 +14,21 @@ function readTextFile(file, callback) {
 }
 
 var versionCheck = "";
+var versionCheckLast = "";
 var versionCheckIteration = 0;
 
 setInterval(function(){
     readTextFile("version.json?rand=" + (Date.now()), function(text){
         var data = JSON.parse(text);
+        versionCheckLast = versionCheck;
         versionCheck = data[0].version;
         versionCheckIteration++;
 
         if(versionCheckIteration >= 2){
-            console.log(versionCheck);    
+            if(versionCheck !== versionCheckLast){
+                console.log("JSON Update found");
+                updateBar.className = 'on';
+            }
         }
     });
 },1000);
