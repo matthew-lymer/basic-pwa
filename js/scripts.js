@@ -13,11 +13,18 @@ function readTextFile(file, callback) {
     rawFile.send(null);
 }
 
-//usage:
+var versionCheck = "";
+var versionCheckIteration = 0;
+
 setInterval(function(){
     readTextFile("version.json?rand=" + (Date.now()), function(text){
         var data = JSON.parse(text);
-        console.log(data);
+        versionCheck = data[0].version;
+        versionCheckIteration++;
+
+        if(versionCheckIteration >= 2){
+            console.log(versionCheck);    
+        }
     });
 },1000);
 
