@@ -1,6 +1,26 @@
 let newServiceWorker;
 let updateBar = document.getElementById('update');
 
+function readTextFile(file, callback) {
+    var rawFile = new XMLHttpRequest();
+    rawFile.overrideMimeType("application/json");
+    rawFile.open("GET", file, true);
+    rawFile.onreadystatechange = function() {
+        if (rawFile.readyState === 4 && rawFile.status == "200") {
+            callback(rawFile.responseText);
+        }
+    }
+    rawFile.send(null);
+}
+
+//usage:
+setInterval(function(){
+    readTextFile("version.json?rand=" + (Date.now()), function(text){
+        var data = JSON.parse(text);
+        console.log(data);
+    });
+},1000);
+
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('sw.js').then(reg => {
         reg.addEventListener('updatefound', () => {
