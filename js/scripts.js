@@ -1,3 +1,4 @@
+var cacheName = 'version-1.43';
 let newServiceWorker;
 let updateBar = document.getElementById('update');
 let otherUpdateBar = document.getElementById('otherUpdate');
@@ -15,24 +16,23 @@ function readTextFile(file, callback) {
 }
 
 var versionCheck = "";
-var versionCheckLast = "";
-var versionCheckIteration = 0;
+
+console.log(cacheName + " - Current version");
 
 setInterval(function(){
     readTextFile("version.json?rand=" + (Date.now()), function(text){
         var data = JSON.parse(text);
-        versionCheckLast = versionCheck;
         versionCheck = data[0].version;
-        versionCheckIteration++;
 
-        if(versionCheckIteration >= 2){
-            if(versionCheck !== versionCheckLast){
-                console.log("JSON Update found");
-                otherUpdateBar.className = 'on';
-            }
+        if(versionCheck !== cacheName){
+            console.log(versionCheck + " - Update found");
+            otherUpdateBar.className = 'on';
+        }
+        else{
+            console.log(versionCheck + " - No update found");
         }
     });
-},1000);
+},1000*60); //Update check every 1 min
 
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('sw.js').then(reg => {

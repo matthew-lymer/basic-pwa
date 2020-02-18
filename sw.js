@@ -1,9 +1,9 @@
-var cacheName = 'version-1.28';
+var cacheName = 'version-1.43';
 var filesToCache = [
-  'index.html',
-  'css/style.css',
-  'js/scripts.js',
-  'images/smiley.png'
+  'index.html?v='+cacheName,
+  'css/style.css?v='+cacheName,
+  'js/scripts.js?v='+cacheName,
+  'images/smiley.png?v='+cacheName
 ];
 
 self.addEventListener('install', event => {

@@ -27,7 +27,7 @@ main{
     box-sizing: border-box;
     text-align: center;
     border-radius: 10px;
-    border:2px solid #fff;
+    border:10px solid blue;
 }
 
 img{
