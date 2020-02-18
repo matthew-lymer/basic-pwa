@@ -29,10 +29,26 @@ self.addEventListener('activate', event => {
     );
 });
 
+//Network first
+// self.addEventListener('fetch', function(event) {
+//     event.respondWith(
+//         fetch(event.request).catch(function() {
+//             return caches.match(event.request);
+//         })
+//     );
+// });
+
+
+//Cache first
+//Use this - network first breaks while offline :(
 self.addEventListener('fetch', function(event) {
     event.respondWith(
-        fetch(event.request).catch(function() {
-            return caches.match(event.request);
-        })
+        caches.match(event.request).then(function(response) {
+            if(response) {
+                return response;
+            }
+            return fetch(event.request);
+        }
+        )
     );
 });
