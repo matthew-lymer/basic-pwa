@@ -1,5 +1,6 @@
 let newServiceWorker;
 let updateBar = document.getElementById('update');
+let otherUpdateBar = document.getElementById('otherUpdate');
 
 function readTextFile(file, callback) {
     var rawFile = new XMLHttpRequest();
@@ -27,7 +28,7 @@ setInterval(function(){
         if(versionCheckIteration >= 2){
             if(versionCheck !== versionCheckLast){
                 console.log("JSON Update found");
-                updateBar.className = 'on';
+                otherUpdateBar.className = 'on';
             }
         }
     });
@@ -66,6 +67,13 @@ if ('serviceWorker' in navigator) {
 updateBar.addEventListener('click', function(){
     newServiceWorker.postMessage({ action: 'skipWaiting' });
 });
+
+// Click ebvent for Update Bar
+otherUpdateBar.addEventListener('click', function(){
+    window.location.reload();
+    refreshing = true;
+});
+
 
 // Prompt installation on IOS
 const isIos = () => {
