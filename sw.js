@@ -1,4 +1,4 @@
-var cacheName = 'version-1.03';
+var cacheName = 'version-1.04';
 var filesToCache = [
   'index.html',
   'css/style.css',
