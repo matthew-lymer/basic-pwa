@@ -3,30 +3,22 @@ let updateBar = document.getElementById('update');
 
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('sw.js').then(reg => {
-        function checkForUpdate(){
-            reg.addEventListener('updatefound', () => {
-                //New update update found
-                newServiceWorker = reg.installing;
-                newServiceWorker.addEventListener('statechange', () => {
-                    // Has network.state changed?
-                    switch (newServiceWorker.state) {
-                        case 'installed':
-                        if (navigator.serviceWorker.controller) {
-                            // new update available, show Update Bar
-                            updateBar.className = 'on';
-                        }
-                        // No update available
-                        break;
+        reg.addEventListener('updatefound', () => {
+            //New update update found
+            newServiceWorker = reg.installing;
+            newServiceWorker.addEventListener('statechange', () => {
+                // Has network.state changed?
+                switch (newServiceWorker.state) {
+                    case 'installed':
+                    if (navigator.serviceWorker.controller) {
+                        // new update available, show Update Bar
+                        updateBar.className = 'on';
                     }
-                });
+                    // No update available
+                    break;
+                }
             });
-        }
-
-        checkForUpdate();
-
-        setInterval(function(){
-            checkForUpdate();
-        },(1000*60)); // Check every 5 mins
+        });
     });
 
     let refreshing;
