@@ -15,14 +15,16 @@ self.addEventListener('install', event => {
     );
 });
 
-self.addEventListener('activate', function(event) {
+self.addEventListener('activate', event => {
     event.waitUntil(
-        caches.keys().then(function(cacheNames) {
-            return Promise.all(
-                cacheNames.map(function(cacheName) {
-                    return caches.delete(cacheName);
-                })
-            );
+        caches.keys().then(keys => Promise.all(
+            keys.map(key => {
+                if (!cacheName.includes(key)) {
+                    return caches.delete(key);
+                }
+            })
+        )).then(() => {
+            console.log(cacheName +' update applied and cached!');
         })
     );
 });
