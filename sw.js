@@ -1,10 +1,11 @@
-var cacheName = 'version-1.08';
+var cacheName = 'version-1.09';
 var filesToCache = [
     //HTML
     'index.html?v='+cacheName,
     //CSS
     'css/style.css?v='+cacheName,
     //JS
+    'https://cdn.jsdelivr.net/npm/idb@8/build/umd.js?v='+cacheName,
     'js/scripts.js?v='+cacheName,
     'js/jquery.min.js?v='+cacheName,
     'js/pwa.js?v='+cacheName,
