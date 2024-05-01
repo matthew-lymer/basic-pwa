@@ -27,8 +27,8 @@
 
         Object.keys(ketoCookieJSON).forEach(key => {
             $(".list-item[data-row='"+key+"'] input[name='description']").val(ketoCookieJSON[key][0]);
-            $(".list-item[data-row='"+key+"'] input[name='calories']").val(ketoCookieJSON[key][0]);
-            $(".list-item[data-row='"+key+"'] input[name='carbs']").val(ketoCookieJSON[key][0]);
+            $(".list-item[data-row='"+key+"'] input[name='calories']").val(ketoCookieJSON[key][1]);
+            $(".list-item[data-row='"+key+"'] input[name='carbs']").val(ketoCookieJSON[key][2]);
             $(".window .body #content .add-list-item").trigger("click");
         });
     }
