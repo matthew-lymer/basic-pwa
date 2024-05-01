@@ -14,6 +14,8 @@
             cal = $(this).find("input[name='calories']").val();
             car = $(this).find("input[name='carbs']").val();
 
+            console.log(id + "." + des + "." + cal + "." + car);
+
             ketoCookie[id] = [des,cal,car];
         });
 
