@@ -14,20 +14,23 @@
             cal = $(this).find("input[name='calories']").val();
             car = $(this).find("input[name='carbs']").val();
 
-            console.log(id + "." + des + "." + cal + "." + car);
-
             ketoCookie[id] = [des,cal,car];
         });
 
         ketoCookieJSON = JSON.stringify(ketoCookie);
         Cookies.set('ketoCookie', ketoCookie, { expires: 2, secure: false });
-        console.log(ketoCookieJSON);
     }
 
     function getLocalData() {
         var ketoCookieJSON = Cookies.get('ketoCookie');
 
-        console.log(ketoCookieJSON);
+        $(".window .body #content .add-list-item").trigger("click");
+        
+        Object.keys(ketoCookieJSON).forEach(key => {
+            $(".list-item[data-row='"+key+"'] input[name='description']").val(ketoCookieJSON[key][0]);
+            $(".list-item[data-row='"+key+"'] input[name='calories']").val(ketoCookieJSON[key][0]);
+            $(".list-item[data-row='"+key+"'] input[name='carbs']").val(ketoCookieJSON[key][0]);
+        });
     }
 
     function totalCalories(){
@@ -59,45 +62,36 @@
     $(document).ready(function(){
         getLocalData();
 
-        //Add extra list items
-        //Adjust the adding buttons after adding first item
-        if($(".window .body #content .list-items").length){
-            $(".window .body #content").on("click touch", ".empty-list-item, .add-list-item", function(){
-                if($(".window .body #content .add-list-item").hasClass("suspend")){
-                    alert("A maximum of 10 items can be added at a time");
-                }
-                else{
-                    var next = $(".list-item").length + 1;
+        $(".window .body #content").on("click touch", ".empty-list-item, .add-list-item", function(){
+            var next = $(".list-item").length + 1;
 
-                    var listItemHTML = '<div class="list-item" data-row="'+next+'">' +
-                                        '    <a class="close button left">' +
-                                        '        <img src="images/close-white.svg" alt="Delete" width="30" height="30" />' +
-                                        '    </a>' +
-                                        '    <input class="food description left" type="text" name="description" value="" placeholder="Food" />' +
-                                        '    <input class="food calories left" type="tel" name="calories" value="" placeholder="kCal" />' +
-                                        '    <input class="food carbs left" type="number" name="carbs" value="" placeholder="grams" />' +
-                                        '    <div class="clear"></div>' +
-                                        '</div>';
+            var listItemHTML = '<div class="list-item" data-row="'+next+'">' +
+                                '    <a class="close button left">' +
+                                '        <img src="images/close-white.svg" alt="Delete" width="30" height="30" />' +
+                                '    </a>' +
+                                '    <input class="food description left" type="text" name="description" value="" placeholder="Food" />' +
+                                '    <input class="food calories left" type="tel" name="calories" value="" placeholder="kCal" />' +
+                                '    <input class="food carbs left" type="number" name="carbs" value="" placeholder="grams" />' +
+                                '    <div class="clear"></div>' +
+                                '</div>';
 
-                    $(".window .body #content .list-items").append(listItemHTML);
+            $(".window .body #content .list-items").append(listItemHTML);
 
-                    $(".window .body #content .overflow-box").stop().animate({ scrollTop: $('.window .body #content .overflow-box').prop("scrollHeight")}, 500);
+            $(".window .body #content .overflow-box").stop().animate({ scrollTop: $('.window .body #content .overflow-box').prop("scrollHeight")}, 500);
 
-                    // var listItemCount = $(".window .body #content .list-items .list-item").length;
+            // var listItemCount = $(".window .body #content .list-items .list-item").length;
 
-                    // if(listItemCount > 1){
-                    //     $(".window .body #content .empty-list-item").removeClass("on");
-                    // }
-                    //
-                    // if(listItemCount >= 50){
-                    //     $(".window .body #content .add-list-item").addClass("suspend");
-                    // }
-                    // else{
-                    //     $(".window .body #content .add-list-item").removeClass("suspend");
-                    // }
-                }
-            });
-        }
+            // if(listItemCount > 1){
+            //     $(".window .body #content .empty-list-item").removeClass("on");
+            // }
+            //
+            // if(listItemCount >= 50){
+            //     $(".window .body #content .add-list-item").addClass("suspend");
+            // }
+            // else{
+            //     $(".window .body #content .add-list-item").removeClass("suspend");
+            // }
+        });
 
         //Remove existing list-items
         //Reset the adding buttons if no items left
