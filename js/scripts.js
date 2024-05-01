@@ -28,7 +28,7 @@
             addNewLine();
         }
 
-        setTimeout(function(){
+        //setTimeout(function(){
             Object.keys(ketoCookieJSON).forEach(key => {
                 var listitem = $(document.getElementById("list-item-" + (key+1)));
 
@@ -39,7 +39,7 @@
             });
 
             totalCalories();
-        }, 500);
+        //}, 500);
     }
 
     function addNewLine(){
