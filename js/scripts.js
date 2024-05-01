@@ -19,6 +19,7 @@
 
         ketoCookieJSON = JSON.stringify(ketoCookie);
         Cookies.set('ketoCookie', ketoCookie, { expires: 2, secure: false });
+        console.log(ketoCookieJSON);
     }
 
     function getLocalData() {
