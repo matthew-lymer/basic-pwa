@@ -31,6 +31,7 @@
         }
 
         Object.keys(ketoCookieJSON).forEach(key => {
+            console.log(key);
             $(".list-item[data-row='"+(key+1)+"'] input[name='description']").val(ketoCookieJSON[key][0]);
             $(".list-item[data-row='"+(key+1)+"'] input[name='calories']").val(ketoCookieJSON[key][1]);
             $(".list-item[data-row='"+(key+1)+"'] input[name='carbs']").val(ketoCookieJSON[key][2]);
