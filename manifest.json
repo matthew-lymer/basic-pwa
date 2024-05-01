@@ -3,7 +3,7 @@
     "short_name": "Keto Tracker",
     "icons": [
         {
-          "src": "images/icon-180x180.png",
+          "src": "images/icon-180x180.png?v=version-1.02",
           "type": "image/png",
           "sizes": "180x180"
         }
