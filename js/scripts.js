@@ -14,7 +14,7 @@
             cal = $(this).find("input[name='calories']").val();
             car = $(this).find("input[name='carbs']").val();
 
-            ketoCookie[id] = {"des":des,"cal":cal,:"car":car};
+            ketoCookie[id] = {description: des, calories: cal, carbs: car};
         });
 
         ketoCookieJSON = JSON.stringify(ketoCookie);
@@ -31,10 +31,9 @@
         }
 
         Object.keys(ketoCookieJSON).forEach(key => {
-            console.log(key);
-            $(".list-item[data-row='"+(key+1)+"'] input[name='description']").val(ketoCookieJSON[key].des);
-            $(".list-item[data-row='"+(key+1)+"'] input[name='calories']").val(ketoCookieJSON[key].cal);
-            $(".list-item[data-row='"+(key+1)+"'] input[name='carbs']").val(ketoCookieJSON[key].car);
+            $(".list-item[data-row='"+(key+1)+"'] input[name='description']").val(ketoCookieJSON[key].description);
+            $(".list-item[data-row='"+(key+1)+"'] input[name='calories']").val(ketoCookieJSON[key].calories);
+            $(".list-item[data-row='"+(key+1)+"'] input[name='carbs']").val(ketoCookieJSON[key].carbs);
         });
 
         totalCalories();
