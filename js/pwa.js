@@ -1,4 +1,4 @@
-var cacheName = 'version-1.03';
+var cacheName = 'version-1.04';
 let newServiceWorker;
 let updateBar = document.getElementById('update');
 let otherUpdateBar = document.getElementById('otherUpdate');

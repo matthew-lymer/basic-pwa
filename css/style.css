@@ -134,7 +134,7 @@
         height: 140px;
         padding-top:40px;
 /*        border-radius: 0 0 500px 500px / 0 0 150px 150px;*/
-        background: linear-gradient(0deg, #489bee, #07e7e7);
+        background: linear-gradient(-45deg, #00ffad, #d13aba);
         position: relative;
         z-index: 2;
         border: 1px solid rgba(0,0,0,0.5);

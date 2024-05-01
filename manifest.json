@@ -3,14 +3,15 @@
     "short_name": "Keto Tracker",
     "icons": [
         {
-          "src": "images/icon-512x512.png?v=version-1.03",
+          "src": "images/icon-256x256.png?v=version-1.04",
           "type": "image/png",
-          "sizes": "512x512"
+          "sizes": "256x256",
+          "purpose": "maskable"
         }
     ],
     "start_url": "index.html",
     "display": "standalone",
-    "background_color": "#4cb0b9",
-    "theme_color": "#4cb0b9",
+    "background_color": "#d13aba",
+    "theme_color": "#d13aba",
     "orientation": "portrait"
 }
