@@ -24,6 +24,8 @@
     function getLocalData() {
         var ketoCookieJSON = JSON.parse(Cookies.get('ketoCookie'));
 
+        console.log(ketoCookieJSON);
+
         for(var x = 1; x < ketoCookieJSON.length; x++){
             addNewLine();
         }
