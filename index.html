@@ -1,29 +1,68 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
-        <title>PWA Sample</title>
+        <title>Keto Tracker</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+        <meta content="IE=9" http-equiv="X-UA-Compatible">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta name="description" content="Keto Tracker">
+        <link href="https://fonts.googleapis.com/css?family=Work+Sans&display=swap" rel="stylesheet">
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-        <link rel="stylesheet" href="css/style.css?v=version-1.43">
+        <link rel="stylesheet" href="css/style.css?v=version-1.01">
         <link rel="manifest" href="manifest.json">
         <link rel="apple-touch-icon" href="icons/icon-180x180.png">
         <meta name="apple-mobile-web-app-status-bar" content="#07e7e7">
         <meta name="theme-color" content="#07e7e7">
     </head>
     <body>
-        <main>
-            <div class="intro">
-                This is a sample PWA - even with no internet, this content should be visible! <img src="images/smiley.png" alt="Smiley Face" width="36" height="30">
-                <br>
-                <br>
-                However, when updated, the new version should be available with an update!
-                <img src="images/smiley.png" alt="Smiley Face" width="36" height="30">
-                version-1.43 now!
+        <div class="window">
+            <div class="header">
+                <div id="otherUpdate">App update found - click here to start update</div>
+                <div id="update">App update started - click here to finalise</div>
             </div>
-            <div id="otherUpdate">App update found - click here to start update</div>
-            <div id="update">App update started - click here to finalise</div>
-        </main>
-        <script src="js/scripts.js?v=version-1.43"></script>
+            <div class="body">
+                <div id="calorie-total">
+                    <span class="total">0</span>
+                    <span class="unit">kCal</span>
+                    <span class="totalS">0.0</span>
+                    <span class="unitS">g</span>
+                </div>
+                <div id="content">
+                    <div class="overflow-box">
+                        <div class="list-items">
+                            <div class="list-item">
+                                <a class="close button left">
+                                    <img src="images/close-white.svg?v=version-1.06" alt="Delete" width="30" height="30" />
+                                </a>
+                                <input class="food description left" type="text" name="description" value="" placeholder="Food" />
+                                <input class="food calories left" type="tel" name="calories" value="" placeholder="kCal" />
+                                <input class="food carbs left" type="number" name="carbs" value="" placeholder="grams" />
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                        <div class="empty-list-item on">press the <strong>+</strong> button to add calories</div>
+                        <div class="list-item-buffer"></div>
+                    </div>
+                    <!-- <div class="add-list-item">+</div> -->
+                </div>
+            </div>
+            <div class="footer tabs">
+                <div id="tab1" class="tab">
+                    <img src="images/tab-icon-01.svg?v=version-1.06" alt="Reset" width="35" height="35" />
+                    <div class="title">reset</div>
+                </div>
+                <div id="tab2" class="tab on">
+                    <img src="images/tab-icon-02.svg?v=version-1.06" alt="Add" width="35" height="35" />
+                    <div class="title">calories</div>
+                </div>
+                <div id="tab3" class="tab">
+                    <img src="images/tab-icon-03.svg?v=version-1.06" alt="Calculator" width="35" height="35" />
+                    <div class="title">calculator</div>
+                </div>
+            </div>
+        </div>
+		<script type="text/javascript" src="js/jquery.min.js?v=version-1.01"></script>
+        <script type="text/javascript" src="js/scripts.js?v=version-1.01"></script>
+        <script type="text/javascript" src="js/pwa.js?v=version-1.01"></script>
     </body>
 </html>

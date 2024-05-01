@@ -1,9 +1,18 @@
-var cacheName = 'version-1.43';
+var cacheName = 'version-1.01';
 var filesToCache = [
-  'index.html?v='+cacheName,
-  'css/style.css?v='+cacheName,
-  'js/scripts.js?v='+cacheName,
-  'images/smiley.png?v='+cacheName
+    //HTML
+    'index.html?v='+cacheName,
+    //CSS
+    'css/style.css?v='+cacheName,
+    //JS
+    'js/scripts.js?v='+cacheName,
+    'js/jquery.min.js?v='+cacheName,
+    'js/pwa.js?v='+cacheName,
+    //Images
+    'images/tab-icon-01.svg?v='+cacheName,
+    'images/tab-icon-02.svg?v='+cacheName,
+    'images/tab-icon-03.svg?v='+cacheName,
+    'images/close-white.svg?v='+cacheName,
 ];
 
 self.addEventListener('install', event => {
@@ -34,16 +43,6 @@ self.addEventListener('message', function (event) {
         self.skipWaiting();
     }
 });
-
-//Network first
-// self.addEventListener('fetch', function(event) {
-//     event.respondWith(
-//         fetch(event.request).catch(function() {
-//             return caches.match(event.request);
-//         })
-//     );
-// });
-
 
 //Cache first
 //Use this - network first breaks while offline :(
