@@ -24,17 +24,15 @@
     function getLocalData() {
         var ketoCookieJSON = JSON.parse(Cookies.get('ketoCookie'));
 
-        console.log(ketoCookieJSON);
-
         for(var x = 1; x < ketoCookieJSON.length; x++){
             addNewLine();
         }
 
         Object.keys(ketoCookieJSON).forEach(key => {
-            console.log(ketoCookieJSON[key].description);
-            $(".list-item[data-row='"+(key+1)+"'] input[name='description']").val(ketoCookieJSON[key].description);
-            $(".list-item[data-row='"+(key+1)+"'] input[name='calories']").val(ketoCookieJSON[key].calories);
-            $(".list-item[data-row='"+(key+1)+"'] input[name='carbs']").val(ketoCookieJSON[key].carbs);
+            var listitem = $(document.getElementById("list-item-" + (key+1)));
+            listitem.find("input[name='description']").val(ketoCookieJSON[key].description);
+            listitem.find("input[name='calories']").val(ketoCookieJSON[key].calories);
+            listitem.find("input[name='carbs']").val(ketoCookieJSON[key].carbs);
         });
 
         totalCalories();
@@ -43,7 +41,7 @@
     function addNewLine(){
         var next = $(".list-item").length + 1;
 
-        var listItemHTML = '<div class="list-item" data-row="'+next+'">' +
+        var listItemHTML = '<div class="list-item" id="list-item-'+next+'">' +
                             '    <a class="close button left">' +
                             '        <img src="images/close-white.svg" alt="Delete" width="30" height="30" />' +
                             '    </a>' +
