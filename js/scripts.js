@@ -43,7 +43,7 @@
     function addNewLine(){
         var next = $(".list-item").length + 1;
 
-        var listItemHTML = '<div class="list-item" id="list-item-'+next+'">' +
+        var listItemHTML = '<div class="list-item" data-row="'+next+'" id="list-item-'+next+'">' +
                             '    <a class="close button left">' +
                             '        <img src="images/close-white.svg" alt="Delete" width="30" height="30" />' +
                             '    </a>' +
