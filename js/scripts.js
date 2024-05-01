@@ -1,34 +1,11 @@
     //JS cookie control
     //E.g. Cookies.set('cookieName', 'cookieValue', { expires: 7, secure: false });
     //Where expires is in days
-    //!function(e){if("function"==typeof define&&define.amd)define(e);else if("object"==typeof exports)module.exports=e();else{var n=window.Cookies,t=window.Cookies=e();t.noConflict=function(){return window.Cookies=n,t}}}(function(){function e(){for(var e=0,n={};e<arguments.length;e++){var t=arguments[e];for(var o in t)n[o]=t[o]}return n}function n(t){function o(n,r,i){var c;if(arguments.length>1){if(i=e({path:"/"},o.defaults,i),"number"==typeof i.expires){var s=new Date;s.setMilliseconds(s.getMilliseconds()+864e5*i.expires),i.expires=s}try{c=JSON.stringify(r),/^[\{\[]/.test(c)&&(r=c)}catch(a){}return r=t.write?t.write(r,n):encodeURIComponent(String(r)).replace(/%(23|24|26|2B|3A|3C|3E|3D|2F|3F|40|5B|5D|5E|60|7B|7D|7C)/g,decodeURIComponent),n=encodeURIComponent(String(n)),n=n.replace(/%(23|24|26|2B|5E|60|7C)/g,decodeURIComponent),n=n.replace(/[\(\)]/g,escape),document.cookie=[n,"=",r,i.expires&&"; expires="+i.expires.toUTCString(),i.path&&"; path="+i.path,i.domain&&"; domain="+i.domain,i.secure?"; secure":""].join("")}n||(c={});for(var p=document.cookie?document.cookie.split("; "):[],d=/(%[0-9A-Z]{2})+/g,u=0;u<p.length;u++){var f=p[u].split("="),l=f[0].replace(d,decodeURIComponent),m=f.slice(1).join("=");'"'===m.charAt(0)&&(m=m.slice(1,-1));try{if(m=t.read?t.read(m,l):t(m,l)||m.replace(d,decodeURIComponent),this.json)try{m=JSON.parse(m)}catch(a){}if(n===l){c=m;break}n||(c[l]=m)}catch(a){}}return c}return o.get=o.set=o,o.getJSON=function(){return o.apply({json:!0},[].slice.call(arguments))},o.defaults={},o.remove=function(n,t){o(n,"",e(t,{expires:-1}))},o.withConverter=n,o}return n(function(){})});
+    !function(e){if("function"==typeof define&&define.amd)define(e);else if("object"==typeof exports)module.exports=e();else{var n=window.Cookies,t=window.Cookies=e();t.noConflict=function(){return window.Cookies=n,t}}}(function(){function e(){for(var e=0,n={};e<arguments.length;e++){var t=arguments[e];for(var o in t)n[o]=t[o]}return n}function n(t){function o(n,r,i){var c;if(arguments.length>1){if(i=e({path:"/"},o.defaults,i),"number"==typeof i.expires){var s=new Date;s.setMilliseconds(s.getMilliseconds()+864e5*i.expires),i.expires=s}try{c=JSON.stringify(r),/^[\{\[]/.test(c)&&(r=c)}catch(a){}return r=t.write?t.write(r,n):encodeURIComponent(String(r)).replace(/%(23|24|26|2B|3A|3C|3E|3D|2F|3F|40|5B|5D|5E|60|7B|7D|7C)/g,decodeURIComponent),n=encodeURIComponent(String(n)),n=n.replace(/%(23|24|26|2B|5E|60|7C)/g,decodeURIComponent),n=n.replace(/[\(\)]/g,escape),document.cookie=[n,"=",r,i.expires&&"; expires="+i.expires.toUTCString(),i.path&&"; path="+i.path,i.domain&&"; domain="+i.domain,i.secure?"; secure":""].join("")}n||(c={});for(var p=document.cookie?document.cookie.split("; "):[],d=/(%[0-9A-Z]{2})+/g,u=0;u<p.length;u++){var f=p[u].split("="),l=f[0].replace(d,decodeURIComponent),m=f.slice(1).join("=");'"'===m.charAt(0)&&(m=m.slice(1,-1));try{if(m=t.read?t.read(m,l):t(m,l)||m.replace(d,decodeURIComponent),this.json)try{m=JSON.parse(m)}catch(a){}if(n===l){c=m;break}n||(c[l]=m)}catch(a){}}return c}return o.get=o.set=o,o.getJSON=function(){return o.apply({json:!0},[].slice.call(arguments))},o.defaults={},o.remove=function(n,t){o(n,"",e(t,{expires:-1}))},o.withConverter=n,o}return n(function(){})});
 
-    async function createDB() {
-      // Using https://github.com/jakearchibald/idb
-      const db = await openDB('cookbook', 1, {
-        upgrade(db, oldVersion, newVersion, transaction) {
-          // Switch over the oldVersion, *without breaks*, to allow the database to be incrementally upgraded.
-        switch(oldVersion) {
-         case 0:
-           // Placeholder to execute when database is created (oldVersion is 0)
-         case 1:
-           // Create a store of objects
-           const store = db.createObjectStore('recipes', {
-             // The `id` property of the object will be the key, and be incremented automatically
-               autoIncrement: true,
-               keyPath: 'id'
-           });
-           // Create an index called `name` based on the `type` property of objects in the store
-           store.createIndex('type', 'type');
-         }
-       }
-      });
-    }
-
-    async function storeLocalData() {
-        const ketoCookies = {
-            rows: []
-        };
+    function storeLocalData() {
+        var ketoCookie = [];
+        var ketoCookieJSON;
 
         $(".list-item").each(function(){
             var id,des,cal,car;
@@ -37,23 +14,17 @@
             cal = $(this).find("input[name='calories']").val();
             car = $(this).find("input[name='carbs']").val();
 
-            ketoCookies.row[id] = [des,cal,car];
+            ketoCookie[id] = [des,cal,car];
         });
-        const tx = await db.transaction('ketoCookies', 'readwrite');
-        const ketoCookiesStore = tx.objectStore('ketoCookies');
-        ketoCookiesStore.add(ketoCookies);
-        await tx.done;
+
+        ketoCookieJSON = JSON.stringify(ketoCookie);
+        Cookies.set('ketoCookie', ketoCookie, { expires: 2, secure: false });
     }
 
-    async function getLocalData() {
-        const tx = await db.transaction('ketoCookies', 'readonly')
-        const ketoCookiesStore = tx.objectStore('ketoCookies');
-        // Because in our case the `id` is the key, we would
-        // have to know in advance the value of the id to
-        // retrieve the record
-        const rows = await ketoCookiesStore.get(["rows"]);
+    function getLocalData() {
+        var ketoCookieJSON = Cookies.get('ketoCookie');
 
-        console.log(rows);
+        console.log(ketoCookieJSON);
     }
 
     function totalCalories(){
@@ -131,6 +102,7 @@
         $(".window .body #content .list-items").on("click touch", ".list-item a.close", function(){
             $(this).parent(".list-item").remove();
             totalCalories();
+            storeLocalData();
         });
 
         $(".window .body #content .list-items").on("change keyup", ".list-item input.calories,.list-item input.carbs", function(){
