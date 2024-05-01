@@ -106,7 +106,7 @@
             storeLocalData();
         });
 
-        $(".window .body #content .list-items").on("change keyup", ".list-item input.calories,.list-item input.carbs", function(){
+        $(".window .body #content .list-items").on("change keyup", ".list-item input", function(){
             totalCalories();
             storeLocalData();
         });
