@@ -30,9 +30,9 @@
 
         //setTimeout(function(){
             Object.keys(ketoCookieJSON).forEach(key => {
-                var listitem = $(document.getElementById("list-item-" + (key+1)));
+                var listitem = $(document.getElementById("list-item-" + (parseInt(key)+1)));
 
-                console.log("list-item-" + (key+1));
+                console.log("list-item-" + (parseInt(key)+1));
                 listitem.find("input[name='description']").val(ketoCookieJSON[key].description);
                 listitem.find("input[name='calories']").val(ketoCookieJSON[key].calories);
                 listitem.find("input[name='carbs']").val(ketoCookieJSON[key].carbs);
