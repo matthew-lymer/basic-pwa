@@ -22,14 +22,14 @@
     }
 
     function getLocalData() {
-        var ketoCookieJSON = Cookies.get('ketoCookie');
+        var ketoCookieJSON = JSON.parse(Cookies.get('ketoCookie'));
+        console.log(ketoCookieJSON);
 
-        $(".window .body #content .add-list-item").trigger("click");
-        
         Object.keys(ketoCookieJSON).forEach(key => {
             $(".list-item[data-row='"+key+"'] input[name='description']").val(ketoCookieJSON[key][0]);
             $(".list-item[data-row='"+key+"'] input[name='calories']").val(ketoCookieJSON[key][0]);
             $(".list-item[data-row='"+key+"'] input[name='carbs']").val(ketoCookieJSON[key][0]);
+            $(".window .body #content .add-list-item").trigger("click");
         });
     }
 
