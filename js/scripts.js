@@ -23,14 +23,36 @@
 
     function getLocalData() {
         var ketoCookieJSON = JSON.parse(Cookies.get('ketoCookie'));
-        console.log(ketoCookieJSON);
+
+        for(var x = 1; x < ketoCookieJSON.length; x++){
+            addNewLine();
+        }
 
         Object.keys(ketoCookieJSON).forEach(key => {
             $(".list-item[data-row='"+key+"'] input[name='description']").val(ketoCookieJSON[key][0]);
             $(".list-item[data-row='"+key+"'] input[name='calories']").val(ketoCookieJSON[key][1]);
             $(".list-item[data-row='"+key+"'] input[name='carbs']").val(ketoCookieJSON[key][2]);
-            $(".window .body #content .add-list-item").trigger("click");
         });
+
+        totalCalories();
+    }
+
+    function addNewLine(){
+        var next = $(".list-item").length + 1;
+
+        var listItemHTML = '<div class="list-item" data-row="'+next+'">' +
+                            '    <a class="close button left">' +
+                            '        <img src="images/close-white.svg" alt="Delete" width="30" height="30" />' +
+                            '    </a>' +
+                            '    <input class="food description left" type="text" name="description" value="" placeholder="Food" />' +
+                            '    <input class="food calories left" type="tel" name="calories" value="" placeholder="kCal" />' +
+                            '    <input class="food carbs left" type="number" name="carbs" value="" placeholder="grams" />' +
+                            '    <div class="clear"></div>' +
+                            '</div>';
+
+        $(".window .body #content .list-items").append(listItemHTML);
+
+        $(".window .body #content .overflow-box").stop().animate({ scrollTop: $('.window .body #content .overflow-box').prop("scrollHeight")}, 500);
     }
 
     function totalCalories(){
@@ -63,34 +85,7 @@
         getLocalData();
 
         $(".window .body #content").on("click touch", ".empty-list-item, .add-list-item", function(){
-            var next = $(".list-item").length + 1;
-
-            var listItemHTML = '<div class="list-item" data-row="'+next+'">' +
-                                '    <a class="close button left">' +
-                                '        <img src="images/close-white.svg" alt="Delete" width="30" height="30" />' +
-                                '    </a>' +
-                                '    <input class="food description left" type="text" name="description" value="" placeholder="Food" />' +
-                                '    <input class="food calories left" type="tel" name="calories" value="" placeholder="kCal" />' +
-                                '    <input class="food carbs left" type="number" name="carbs" value="" placeholder="grams" />' +
-                                '    <div class="clear"></div>' +
-                                '</div>';
-
-            $(".window .body #content .list-items").append(listItemHTML);
-
-            $(".window .body #content .overflow-box").stop().animate({ scrollTop: $('.window .body #content .overflow-box').prop("scrollHeight")}, 500);
-
-            // var listItemCount = $(".window .body #content .list-items .list-item").length;
-
-            // if(listItemCount > 1){
-            //     $(".window .body #content .empty-list-item").removeClass("on");
-            // }
-            //
-            // if(listItemCount >= 50){
-            //     $(".window .body #content .add-list-item").addClass("suspend");
-            // }
-            // else{
-            //     $(".window .body #content .add-list-item").removeClass("suspend");
-            // }
+            addNewLine();
         });
 
         //Remove existing list-items
