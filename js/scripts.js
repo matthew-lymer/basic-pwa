@@ -94,7 +94,7 @@
     $(document).ready(function(){
         getLocalData();
 
-        $(".window .body #content").on("click touch", ".empty-list-item, .add-list-item", function(){
+        $(".window").on("click touch", ".empty-list-item, .add-list-item", function(){
             addNewLine();
         });
 

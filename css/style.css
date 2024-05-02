@@ -85,32 +85,24 @@
         bottom: 0;
         height: 100px;
         border: none;
-        border:1px solid rgba(0,0,0,0.5);
-        border-bottom:none;
-        border-top:2px solid rgba(0,0,0,0.5);
-        /* background: linear-gradient(to bottom right, #234f76, #479dee);
-        color: #fff; */
-        background: #eee;
-        background: linear-gradient(to bottom, #ccc, #fff);
-/*        border-radius: 200px 200px 0 0 / 50px 50px 0 0;*/
-        border-radius: 50px 50px 0 0;
+        background: #ddd;
     }
 
     .window .header #update,
     .window .header #otherUpdate{
         display: none;
         position: fixed;
-        width: 100%;
-        left: 0;
+        width: 300px;
+        height: auto;
+        left: 50%;
+        top:50%;
         z-index: 99;
-        background: #222;
+        background: rgba(0,0,0,0.9);
         color: #fff;
         text-align: center;
-        padding: 15px;
+        padding: 30px;
         box-sizing: border-box;
-        top: 0;
-        height: 42px;
-        background: rgb(12, 55, 57)
+        transform: translate(-50%, -50%);
     }
 
     .window .header #update.on,
@@ -124,25 +116,29 @@
         left: 0;
         width: 100%;
         height: 100%;
-        padding: 0 0 70px 0;
+        padding: 0 0 100px 0;
         z-index: 1;
         background: #fff;
     }
 
     .window .body #calorie-total{
         width: 100%;
-        height: 140px;
-        padding-top:40px;
-/*        border-radius: 0 0 500px 500px / 0 0 150px 150px;*/
+        height: 90px;
         background: linear-gradient(135deg, #00ffad, #d13aba);
         position: relative;
         z-index: 2;
-        border: 1px solid rgba(0,0,0,0.5);
-        border-bottom: 3px solid rgb(35, 79, 118);
-        border-top: none;
-        box-shadow: 0 0 10px rgba(0,0,0,0.5);
         color: #fff;
         text-align: center;
+    }
+
+    .window .body #calorie-total .fade{
+        position: absolute;
+        z-index: 1;
+        top:0;
+        left:0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to bottom, #000, transparent);
     }
 
     .window .body #calorie-total .total,
@@ -157,6 +153,8 @@
         display: inline-block;
         overflow: hidden;
         vertical-align: top;
+        position: relative;
+        z-index: 2;
     }
 
     .window .body #calorie-total .unit{
@@ -170,12 +168,11 @@
     }
 
     .window .body #content{
-        height: calc(100% - 140px);
+        height: calc(100% - 90px);
         width: 100%;
         position: relative;
         background: linear-gradient(135deg, #dcffff 30%, #7bbcfd);
         background: none;
-        margin-top: -60px;
     }
 
     .window .body #content .overflow-box{
@@ -190,7 +187,6 @@
     }
 
     .window .body #content .list-items{
-        padding-top:65px;
         padding-bottom: 15px;
     }
 
@@ -286,32 +282,13 @@
         display: block
     }
 
-    .window .body #content .add-list-item{
-        position: absolute;
-        top:75px;
-        right:0px;
-        width: 50px;
-        height: 50px;
-        line-height: 50px;
-        text-align: center;
-        font-size: 40px;
-        color: #fff;
-        border-radius: 5px 0 0 5px;
-        background: linear-gradient(135deg, #777, #111);
-        z-index: 2;
-    }
-
-    .window .body #content .add-list-item.suspend{
-        opacity: 0.6;
-    }
-
     .window .footer.tabs .tab{
         width: 33.333%;
         height:100%;
         position: absolute;
         left: 0;
         top:0;
-        padding: 33px 10px 7px 10px;
+        padding: 24px 10px 7px 10px;
         text-align: center;
         opacity: 0.35;
     }
