@@ -22,24 +22,29 @@
     }
 
     function getLocalData() {
-        var ketoCookieJSON = JSON.parse(Cookies.get('ketoCookie'));
-
-        for(var x = 1; x < ketoCookieJSON.length; x++){
-            addNewLine();
+        if(Cookies.get('ketoCookie') == null){
+            //No cookie set
         }
+        else{
+            var ketoCookieJSON = JSON.parse(Cookies.get('ketoCookie'));
 
-        //setTimeout(function(){
-            Object.keys(ketoCookieJSON).forEach(key => {
-                var listitem = $(document.getElementById("list-item-" + (parseInt(key)+1)));
+            for(var x = 1; x < ketoCookieJSON.length; x++){
+                addNewLine();
+            }
 
-                console.log("list-item-" + (parseInt(key)+1));
-                listitem.find("input[name='description']").val(ketoCookieJSON[key].description);
-                listitem.find("input[name='calories']").val(ketoCookieJSON[key].calories);
-                listitem.find("input[name='carbs']").val(ketoCookieJSON[key].carbs);
-            });
+            //setTimeout(function(){
+                Object.keys(ketoCookieJSON).forEach(key => {
+                    var listitem = $(document.getElementById("list-item-" + (parseInt(key)+1)));
 
-            totalCalories();
-        //}, 500);
+                    console.log("list-item-" + (parseInt(key)+1));
+                    listitem.find("input[name='description']").val(ketoCookieJSON[key].description);
+                    listitem.find("input[name='calories']").val(ketoCookieJSON[key].calories);
+                    listitem.find("input[name='carbs']").val(ketoCookieJSON[key].carbs);
+                });
+
+                totalCalories();
+            //}, 500);
+        }
     }
 
     function addNewLine(){
