@@ -3,6 +3,11 @@
         --tab-height: 75px;
     } */
 
+    html,
+    body {
+        overscroll-behavior-y: contain;
+    }
+
     html{
         padding: 0;
         margin: 0;
